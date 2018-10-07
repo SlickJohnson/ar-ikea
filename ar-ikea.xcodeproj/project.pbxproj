@@ -12,6 +12,7 @@
 		3DB70B69216AAEA70048F78E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB70B67216AAEA70048F78E /* Main.storyboard */; };
 		3DB70B6B216AAEA80048F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB70B6A216AAEA80048F78E /* Assets.xcassets */; };
 		3DB70B6E216AAEA80048F78E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB70B6C216AAEA80048F78E /* LaunchScreen.storyboard */; };
+		3DB70B76216AB1140048F78E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB70B75216AB1140048F78E /* ItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		3DB70B6A216AAEA80048F78E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DB70B6D216AAEA80048F78E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3DB70B6F216AAEA80048F78E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3DB70B75216AB1140048F78E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				3DB70B6A216AAEA80048F78E /* Assets.xcassets */,
 				3DB70B6C216AAEA80048F78E /* LaunchScreen.storyboard */,
 				3DB70B6F216AAEA80048F78E /* Info.plist */,
+				3DB70B75216AB1140048F78E /* ItemCell.swift */,
 			);
 			path = "ar-ikea";
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			files = (
 				3DB70B66216AAEA70048F78E /* ViewController.swift in Sources */,
 				3DB70B64216AAEA70048F78E /* AppDelegate.swift in Sources */,
+				3DB70B76216AB1140048F78E /* ItemCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
