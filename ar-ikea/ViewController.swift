@@ -21,6 +21,7 @@ class ViewController: UIViewController {
   /// The item that was selected in the collection view.
   var selectedItem: String?
 
+  @IBOutlet weak var planeDetectedLabel: UILabel!
   override func viewDidLoad() {
     super.viewDidLoad()
     sceneView.debugOptions = [ARSCNDebugOptions.showWorldOrigin, ARSCNDebugOptions.showFeaturePoints]
@@ -28,16 +29,19 @@ class ViewController: UIViewController {
     sceneView.session.run(configuration)
     itemsCollectionView.dataSource = self
     itemsCollectionView.delegate = self
+    sceneView.delegate = self
     registerGestureRecognizers()
   }
 }
 
 /// MARK: Helper
 private extension ViewController {
-  /// Adds tap gesture recognizer to scene view.
+  /// Adds tap gesture recognizers to scene view.
   func registerGestureRecognizers() {
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+    let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinched))
     sceneView.addGestureRecognizer(tapGestureRecognizer)
+    sceneView.addGestureRecognizer(pinchGestureRecognizer)
   }
 
   /// Handles taps on scene view.
@@ -45,8 +49,31 @@ private extension ViewController {
     let sceneView = sender.view as! ARSCNView
     let tapLocation = sender.location(in: sceneView)
     let hitTest = sceneView.hitTest(tapLocation, types: .existingPlaneUsingExtent)
+
+    // Check if there was an item tapped.
     if !hitTest.isEmpty {
       addItem(hitTestResult: hitTest.first!)
+    }
+  }
+
+  @objc func pinched(sender: UIPinchGestureRecognizer) {
+    // Hit test at location pinched.
+    guard let sceneView = sender.view as? ARSCNView else { return }
+    let pinchLocation = sender.location(in: sceneView)
+    let hitTest = sceneView.hitTest(pinchLocation)
+
+    // Check if there was an item pinched.
+    if !hitTest.isEmpty {
+      // Grab item pinched.
+      guard let results = hitTest.first else { return }
+      let node = results.node
+
+      // Scale item based on pinch scale.
+      let pinchAction = SCNAction.scale(by: sender.scale, duration: 0)
+      node.runAction(pinchAction)
+
+      // Reset gesture scale.
+      sender.scale = 1.0
     }
   }
 
@@ -93,6 +120,19 @@ extension ViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     let cell = collectionView.cellForItem(at: indexPath)
     cell?.backgroundColor = UIColor.orange
+  }
+}
+
+/// MARK: - ARSCNViewDelegate
+extension ViewController: ARSCNViewDelegate {
+  func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+    guard anchor is ARPlaneAnchor else { return }
+    DispatchQueue.main.async {
+      self.planeDetectedLabel.isHidden = false
+      DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        self.planeDetectedLabel.isHidden = true
+      }
+    }
   }
 }
 

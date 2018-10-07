@@ -60,6 +60,12 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mND-bh-lFw">
                                 <rect key="frame" x="0.0" y="20" width="375" height="572"/>
                             </arscnView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plane detected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tc-YZ-7zu">
+                                <rect key="frame" x="125.5" y="20" width="124.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -68,13 +74,16 @@
                             <constraint firstItem="Ui6-3g-OrM" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="T82-EH-tBr"/>
                             <constraint firstItem="mND-bh-lFw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="U5r-Uv-SgL"/>
                             <constraint firstItem="Ui6-3g-OrM" firstAttribute="top" secondItem="mND-bh-lFw" secondAttribute="bottom" id="WVe-S0-0Kl"/>
+                            <constraint firstItem="5Tc-YZ-7zu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZcE-J5-QoF"/>
                             <constraint firstItem="Ui6-3g-OrM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iBx-JZ-Z94"/>
                             <constraint firstItem="mND-bh-lFw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="usD-gE-RJT"/>
+                            <constraint firstItem="5Tc-YZ-7zu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vi0-6I-qdE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="itemsCollectionView" destination="Ui6-3g-OrM" id="dob-Bs-5sw"/>
+                        <outlet property="planeDetectedLabel" destination="5Tc-YZ-7zu" id="BBC-eo-Jg9"/>
                         <outlet property="sceneView" destination="mND-bh-lFw" id="m3s-xv-zzP"/>
                     </connections>
                 </viewController>
