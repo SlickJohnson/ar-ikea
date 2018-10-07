@@ -13,6 +13,7 @@
 		3DB70B6B216AAEA80048F78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB70B6A216AAEA80048F78E /* Assets.xcassets */; };
 		3DB70B6E216AAEA80048F78E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DB70B6C216AAEA80048F78E /* LaunchScreen.storyboard */; };
 		3DB70B76216AB1140048F78E /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB70B75216AB1140048F78E /* ItemCell.swift */; };
+		3DB70B78216AB2980048F78E /* Models.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DB70B77216AB2980048F78E /* Models.scnassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		3DB70B6D216AAEA80048F78E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3DB70B6F216AAEA80048F78E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB70B75216AB1140048F78E /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		3DB70B77216AB2980048F78E /* Models.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Models.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				3DB70B6C216AAEA80048F78E /* LaunchScreen.storyboard */,
 				3DB70B6F216AAEA80048F78E /* Info.plist */,
 				3DB70B75216AB1140048F78E /* ItemCell.swift */,
+				3DB70B77216AB2980048F78E /* Models.scnassets */,
 			);
 			path = "ar-ikea";
 			sourceTree = "<group>";
@@ -126,6 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DB70B6E216AAEA80048F78E /* LaunchScreen.storyboard in Resources */,
+				3DB70B78216AB2980048F78E /* Models.scnassets in Resources */,
 				3DB70B6B216AAEA80048F78E /* Assets.xcassets in Resources */,
 				3DB70B69216AAEA70048F78E /* Main.storyboard in Resources */,
 			);
