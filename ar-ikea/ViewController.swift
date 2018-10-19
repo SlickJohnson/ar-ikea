@@ -40,8 +40,12 @@ private extension ViewController {
   func registerGestureRecognizers() {
     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
     let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(pinched))
+    let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(rotate))
+    longPressGestureRecognizer.minimumPressDuration = 0.1
     sceneView.addGestureRecognizer(tapGestureRecognizer)
     sceneView.addGestureRecognizer(pinchGestureRecognizer)
+    sceneView.addGestureRecognizer(longPressGestureRecognizer)
+    sceneView.autoenablesDefaultLighting = true
   }
 
   /// Handles taps on scene view.
@@ -77,6 +81,25 @@ private extension ViewController {
     }
   }
 
+  /// Rotate the object based on long press gesture.
+  @objc func rotate(sender: UILongPressGestureRecognizer) {
+    guard let sceneView = sender.view as? ARSCNView else { return }
+    let holdLocation = sender.location(in: sceneView)
+    let hitTest = sceneView.hitTest(holdLocation)
+
+    if !hitTest.isEmpty {
+      guard let result = hitTest.first else { return }
+
+      if sender.state == .began {
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 1)
+        let forever = SCNAction.repeatForever(action)
+        result.node.runAction(forever)
+      } else if sender.state == .ended {
+        result.node.removeAllActions()
+      }
+    }
+  }
+
   /// Adds the item item to detected plan based on item tapped in collection view.
   func addItem(hitTestResult: ARHitTestResult) {
     // Check if there's an item selected.
@@ -92,7 +115,20 @@ private extension ViewController {
 
     // Position item at detected plane.
     node.position = SCNVector3(thirdColumn.x, thirdColumn.y, thirdColumn.z)
+    if selectedItem == "table" {
+      centerPivot(for: node)
+    }
     sceneView.scene.rootNode.addChildNode(node)
+  }
+
+  func centerPivot(for node: SCNNode) {
+    let min = node.boundingBox.min
+    let max = node.boundingBox.max
+    node.pivot = SCNMatrix4MakeTranslation(
+      min.x + (max.x - min.x) / 2,
+      min.y + (max.y - min.y) / 2,
+      min.z + (max.z - min.z) / 2
+    )
   }
 }
 
@@ -134,5 +170,9 @@ extension ViewController: ARSCNViewDelegate {
       }
     }
   }
+}
+
+extension Int {
+  var degreesToRadians: Double { return Double(self) * .pi/180}
 }
 
